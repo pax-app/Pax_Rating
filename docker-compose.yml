@@ -1,0 +1,13 @@
+version: "3.6"
+
+services:
+  review-service:
+    build:
+    context: ./services/review
+    dockerfile: Dockerfile
+    volumes:
+      - "./services/review:/usr/src/app"
+    ports:
+      - 5001:5000
+    environment:
+      - FLASK_APP=project/__init
