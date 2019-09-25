@@ -2,12 +2,10 @@ version: "3.6"
 
 services:
   review-service:
-    build:
-    context: ./services/review
-    dockerfile: Dockerfile
+    image: paxapp/pax-rating:latest
     volumes:
-      - "./services/review:/usr/src/app"
+      - ".:/app"
     ports:
-      - 5001:5000
+      - 5004:5000
     environment:
-      - FLASK_APP=project/__init
+      - FLASK_APP=project/__init__.py
