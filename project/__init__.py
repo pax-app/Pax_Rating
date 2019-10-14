@@ -17,7 +17,7 @@ def create_app(script_info=None):
     migrate.init_app(app, db)
 
     # register blueprints
-    app.register_blueprint(review_blueprint)
-    app.register_blueprint(service_blueprint)
+    app.register_blueprint(review_blueprint, url_prefix='/reviews')
+    app.register_blueprint(service_blueprint, url_prefix='/service_reviews')
 
     return app

@@ -24,7 +24,7 @@ def createSuccessMessage(message):
     return response_object
 
 
-@review_blueprint.route('/reviews/average/<evaluated_id>', methods=['GET'])
+@review_blueprint.route('/average/<evaluated_id>', methods=['GET'])
 def get_users_review_average(evaluated_id):
     response = {}
 
@@ -54,7 +54,7 @@ def get_users_review_average(evaluated_id):
 
     return jsonify(response), 200
 
-@service_blueprint.route('/service_reviews/average/<evaluated_id>', methods=['GET'])
+@service_blueprint.route('/average/<evaluated_id>', methods=['GET'])
 def get_provider_service_review_average(evaluated_id):
     response = {}
 
