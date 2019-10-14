@@ -35,11 +35,13 @@ def get_users_review_average(evaluated_id):
             return jsonify(createFailMessage('Review not found for this user')), 404
 
         user_average = 0
+        review_quantity = 0
 
         for review in reviews:
-            user_average += int(review.charisma_rate)
+            user_average += float(review.charisma_rate)
+            review_quantity += 1
 
-        user_average = user_average / len(reviews)
+        user_average = user_average / review_quantity
 
         response = {
             'status': 'success',
