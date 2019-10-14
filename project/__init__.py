@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify
-from project.api.views import review_blueprint
+from project.api.views import review_blueprint, service_blueprint
 from database import db, migrate
 
 
@@ -18,5 +18,6 @@ def create_app(script_info=None):
 
     # register blueprints
     app.register_blueprint(review_blueprint)
+    app.register_blueprint(service_blueprint)
 
     return app

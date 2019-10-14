@@ -1,6 +1,7 @@
 from flask import request, jsonify, Blueprint
 
 review_blueprint = Blueprint('review', __name__)
+service_blueprint = Blueprint('service', __name__)
 
 
 @review_blueprint.route('/reviews/ping', methods=['GET'])
