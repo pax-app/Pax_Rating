@@ -1,4 +1,4 @@
-# Rating
+# Review
 Microsserviço responsável pelo tratamento e armazenamento das avaliações entre usuários da aplicação
 
 ## Colocando no ar
