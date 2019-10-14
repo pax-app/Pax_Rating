@@ -15,8 +15,7 @@ class Review(db.Model):
     evaluated_id = db.Column(
         db.Integer, nullable=False)
 
-    def __init__(self, review_id, charisma_rate, commentary, evaluator_id, evaluated_id):
-        self.review_id = review_id
+    def __init__(self, charisma_rate, commentary, evaluator_id, evaluated_id):
         self.charisma_rate = charisma_rate
         self.commentary = commentary
         self.evaluator_id = evaluator_id
@@ -45,8 +44,7 @@ class Service(db.Model):
     review_id = db.Column(
         db.Integer, db.ForeignKey('REVIEW.review_id'))
 
-    def __init__(self, name):
-        self.review_service_id = review_service_id
+    def __init__(self, service_rate, commentary, evaluator_id, evaluated_id, review_id):
         self.service_rate = service_rate
         self.commentary = commentary
         self.evaluator_id = evaluator_id
