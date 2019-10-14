@@ -1,11 +1,10 @@
 from database import db
-from project import create_app
-from Flask import current_app
 import enum
 
 
 class Review(db.Model):
     __tablename__ = 'REVIEW'
+
     review_id = db.Column(
         db.Integer, primary_key=True, autoincrement=True)
     charisma_rate = db.Column(db.Enum('1', '2', '3', '4', '5'), nullable=False)
@@ -33,6 +32,7 @@ class Review(db.Model):
 
 class Service(db.Model):
     __tablename__ = 'SERVICE'
+
     review_service_id = db.Column(
         db.Integer, primary_key=True, autoincrement=True)
     service_rate = db.Column(db.Enum('1', '2', '3', '4', '5'), nullable=False)
