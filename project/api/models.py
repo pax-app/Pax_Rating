@@ -36,7 +36,6 @@ class Service(db.Model):
     review_service_id = db.Column(
         db.Integer, primary_key=True, autoincrement=True)
     service_rate = db.Column(db.Enum('1', '2', '3', '4', '5'), nullable=False)
-    commentary = db.Column(db.String(300), nullable=False)
     evaluator_id = db.Column(
         db.Integer, nullable=False)
     evaluated_id = db.Column(
@@ -44,9 +43,8 @@ class Service(db.Model):
     review_id = db.Column(
         db.Integer, db.ForeignKey('REVIEW.review_id'))
 
-    def __init__(self, service_rate, commentary, evaluator_id, evaluated_id, review_id):
+    def __init__(self, service_rate, evaluator_id, evaluated_id, review_id):
         self.service_rate = service_rate
-        self.commentary = commentary
         self.evaluator_id = evaluator_id
         self.evaluated_id = evaluated_id
         self.review_id = review_id
@@ -55,7 +53,6 @@ class Service(db.Model):
         return {
             'review_id': self.review_id,
             'review_id': self.review_id,
-            'commentary': self.commentary,
             'evaluator_id': self.evaluator_id,
             'evaluated_id': self.evaluated_id,
             'review_id': self.review_id
