@@ -54,12 +54,14 @@ def get_users_review_average(evaluated_id):
 
     return jsonify(response), 200
 
+
 @service_blueprint.route('/average/<evaluated_id>', methods=['GET'])
 def get_provider_service_review_average(evaluated_id):
     response = {}
 
     try:
-        service_reviews = Service.query.filter_by(evaluated_id=int(evaluated_id))
+        service_reviews = Service.query.filter_by(
+            evaluated_id=int(evaluated_id))
 
         if not service_reviews:
             return jsonify(createFailMessage('Service review not found for this provider')), 404
@@ -71,6 +73,8 @@ def get_provider_service_review_average(evaluated_id):
             provider_average += float(service_review.service_rate)
             service_review_quantity += 1
 
+        if service_review_quantity == 0:
+            return jsonify(createFailMessage('Insuficient service reviews')), 400
         provider_average = provider_average / service_review_quantity
 
         response = {
