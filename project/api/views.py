@@ -74,7 +74,7 @@ def get_provider_service_review_average(evaluated_id):
             service_review_quantity += 1
 
         if service_review_quantity == 0:
-            return jsonify(createFailMessage('Insuficient service reviews')), 400
+            return jsonify(createFailMessage('Insufficient service reviews')), 400
         provider_average = provider_average / service_review_quantity
 
         response = {
@@ -84,6 +84,6 @@ def get_provider_service_review_average(evaluated_id):
         }
 
     except ValueError:
-        return jsonify(createFailMessage('Proivider not found')), 404
+        return jsonify(createFailMessage('Provider not found')), 404
 
     return jsonify(response), 200
