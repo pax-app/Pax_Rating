@@ -1,5 +1,4 @@
 import enum
-from database import db
 from database_singleton import Singleton
 
 db = Singleton().database_connection()
