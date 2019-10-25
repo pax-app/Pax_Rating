@@ -1,6 +1,7 @@
-from database import db
 import enum
+from database_singleton import Singleton
 
+db = Singleton().database_connection()
 
 class Review(db.Model):
     __tablename__ = 'REVIEW'
