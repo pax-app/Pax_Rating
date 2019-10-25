@@ -1,13 +1,13 @@
 from flask import request, jsonify, Blueprint
 from project.api.models import Review, Service
 from sqlalchemy import exc
-from database import db
 from database_singleton import Singleton
 
 
 review_blueprint = Blueprint('review', __name__)
 service_blueprint = Blueprint('service', __name__)
 db = Singleton().database_connection()
+
 
 def createFailMessage(message):
     response_object = {
