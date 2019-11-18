@@ -2,13 +2,14 @@ from flask import request, jsonify, Blueprint
 from project.api.models import Review, Service
 from sqlalchemy import exc
 from database_singleton import Singleton
-from project.api.utils.creation_utils import Utils 
+from project.api.utils.creation_utils import Utils
 
 
 review_blueprint = Blueprint('review', __name__)
 service_blueprint = Blueprint('service', __name__)
 db = Singleton().database_connection()
 utils = Utils()
+
 
 @review_blueprint.route('/create_review', methods=['POST'])
 def add_service_review():
@@ -27,9 +28,10 @@ def add_service_review():
 
     try:
         review = Review(charisma_rate, commentary, evaluator_id,
-                  evaluated_id)
+                        evaluated_id)
         utils.commit_to_database(review)
-        service = Service(service_rate, evaluator_id, evaluated_id, review.review_id)
+        service = Service(service_rate, evaluator_id,
+                          evaluated_id, review.review_id)
         utils.commit_to_database(service)
         return jsonify(utils.createSuccessMessage('A review was created!')), 201
 
@@ -54,8 +56,10 @@ def get_users_review_average(evaluated_id):
         for review in reviews:
             user_average += float(review.charisma_rate)
             review_quantity += 1
-
-        user_average = user_average / review_quantity
+        if review_quantity is not 0:
+            user_average = user_average / review_quantity
+        else:
+            user_average = 0.0
 
         response = {
             'status': 'success',
@@ -88,8 +92,9 @@ def get_provider_service_review_average(evaluated_id):
             service_review_quantity += 1
 
         if service_review_quantity == 0:
-            return jsonify(utils.createFailMessage('Insufficient service reviews')), 400
-        provider_average = provider_average / service_review_quantity
+            provider_average = 0
+        else:
+            provider_average = provider_average / service_review_quantity
 
         response = {
             'status': 'success',
